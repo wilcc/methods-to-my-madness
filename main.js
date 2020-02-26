@@ -8,15 +8,11 @@ function slice(str,para,para2){
         result += str[i]
       }
     }
-    
     else if(para >= 0) {
       for (let i = para; i < para2; i++){
         result += str[i]
     }}
-  else if(para === undefined && para2 === undefined)
-      {for(let i = 0; i< str.length;i++){
-        result += str[i]
-      }
+    else {result = str
   }return result
 }
 
@@ -87,26 +83,76 @@ function join(array,separator=''){
   }
   return string
 }
-function split(string,separator){
-  const array = []
-  if (separator===undefined){
-  array.push(string)}
-  else {
-  for (let i =0; i<string.length;i++){
-    array.push(string.substring(0,string.indexOf(separator)))
-    array.push(string.substring(string.indexOf(separator)+1,string.length))}
-}
-return array
-}
+function split(str, separator) {
+  let arr = [];
+  let restartIndex = 0;
 
-function trimStart(str){
-  
-  for (let i = 0;i < str.length;i++){
-    if (str[i] !==' ')
-    {return str.slice(i)}
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === separator) {
+      arr.push(slice(str,restartIndex, i));
+      restartIndex = i + 1;
+    }
   }
-return ''
+
+  arr.push(slice(str,restartIndex));
+
+  return arr;
 }
+// function split(string,separator){
+//   const array = []
+//   let str = ''
+//   if (separator===undefined){
+//   array.push(string)}
+//   else {
+//     for(let i = 0; i <string.length;i++)
+//     {if(string[i]===separator)
+//     array.push(str)
+
+//   }
+// return array
+// }
+
+//   else {
+//     let str = ''
+//     let separator = false
+//   for (let i =0; i<string.length;i++){
+//     if(string[i] !== separator && separator ===true)
+    
+//     str += string[i]
+//     array.push(str)
+// if(string[i]===separator)
+// separator === true
+      // {array.push(string[i])}}
+  // {  array.push(string.substring(0,string.indexOf(separator)))
+    // array.push(string.substring(string.indexOf(separator)+1,string.length))
+  // }
+// }}
+
+  function trimStart(str){
+  
+    for (let i = 0;i < str.length;i++){
+      if (str[i] !==' ')
+      {return slice(str,i,str.length)}
+    }
+  return ''
+  }
+
+
+  // let result = ''
+  // // let notSpace = false
+  // for (let i = 0;i < str.length;i++){
+  
+  //   if (str[i] !==' ')
+  //   {notSpace === true
+  //   for (let i = 0; i < str.length;i++)
+  //   // if (notSpace === true)
+  //     {result+=str[i]
+  //     notSpace === true}
+  //     return result}}
+  //     // else result+= str[i]
+  //     return ''
+  //   }
+    
 //     if (str[i] ===' '){
 //     {newStr += str[i]}
 
@@ -116,14 +162,29 @@ return ''
 // }
 
 function trimEnd(str){
-  
-  for (let i =str.length;i >=0;i--){
-    if (str[i] !==' ')
-    {return str.slice(0,i)}
-  else return ''
-  }
-  
+let reverseStr = str.split('').reverse().join('')
+// let slicedVersion = ''
+// let finishedVersion = ''
+// console.log(reverseStr)
+for (let i = 0;i < reverseStr.length;i++){
+  if (reverseStr[i] !==' ')
+  {return slice(reverseStr,i,reverseStr.length).split('').reverse().join('')}
+  // console.log(slicedVersion)
+  // finishedVersion = slicedVersion.split('').reverse().join('')
+
 }
+return ''
+}
+trimEnd('   what')
+
+  // let space = true
+  // for (let i =str.length;i >=0;i--){
+  //   if (str[i] !==' ')
+  //   {return str.slice(0,i)}
+  // else return ''
+  // }
+  
+// }
 /*********************************
  * OUR CODE BELOW; DO NOT TOUCH! *
  *********************************/
